@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrack — Smart Cleantech Waste Logistics &amp; Reverse Supply Chain</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Inter Google Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim as required -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#dae2fd",
+            "surface-container-lowest": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-secondary": "#ffffff",
+            "surface-container-highest": "#dae2fd",
+            "surface-tint": "#2b6954",
+            "surface-bright": "#faf8ff",
+            "surface-container": "#eaedff",
+            "on-secondary-fixed": "#002113",
+            "on-primary-fixed": "#002117",
+            "on-background": "#131b2e",
+            "background": "#faf8ff",
+            "error": "#ba1a1a",
+            "on-primary-fixed-variant": "#0b513d",
+            "primary": "#003527",
+            "tertiary-fixed-dim": "#80d5cb",
+            "outline-variant": "#bfc9c3",
+            "outline": "#707974",
+            "on-tertiary-fixed": "#00201d",
+            "on-secondary-container": "#00714d",
+            "on-primary-container": "#80bea6",
+            "primary-container": "#064e3b",
+            "surface-container-high": "#e2e7ff",
+            "on-surface-variant": "#404944",
+            "tertiary-fixed": "#9cf2e8",
+            "tertiary-container": "#004d47",
+            "on-tertiary-container": "#6ac0b6",
+            "inverse-primary": "#95d3ba",
+            "secondary-fixed": "#6ffbbe",
+            "surface-dim": "#d2d9f4",
+            "primary-fixed": "#b0f0d6",
+            "on-surface": "#131b2e",
+            "secondary-fixed-dim": "#4edea3",
+            "error-container": "#ffdad6",
+            "tertiary": "#003430",
+            "on-secondary-fixed-variant": "#005236",
+            "on-tertiary-fixed-variant": "#00504a",
+            "inverse-surface": "#283044",
+            "secondary": "#006c49",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "primary-fixed-dim": "#95d3ba",
+            "inverse-on-surface": "#eef0ff",
+            "secondary-container": "#6cf8bb",
+            "surface-container-low": "#f2f3ff",
+            "on-error": "#ffffff",
+            "surface": "#faf8ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "space-md": "1rem",
+            "gutter-mobile": "1rem",
+            "margin": "2rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "title-md": ["Inter"],
+            "mono-metric": ["Inter"],
+            "headline-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "display-mobile": ["Inter"],
+            "label-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "display": ["Inter"],
+            "headline-lg-mobile": ["Inter"]
+          },
+          "fontSize": {
+            "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "mono-metric": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "display-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-range-slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #003527;
+      border: 3px solid #6cf8bb;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 53, 39, 0.3);
+    }
+    .custom-range-slider::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #003527;
+      border: 3px solid #6cf8bb;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-secondary-container selection:text-primary">
+<!-- TOP APP BAR (Shared Component Source of Truth) -->
+<header class="sticky top-0 z-50 bg-surface-container-lowest/90 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<!-- Brand Anchor -->
+<a class="text-title-md font-title-md text-primary flex items-center gap-2 group" href="#">
+<span class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-secondary-container shadow-sm group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-xl" data-icon="eco">eco</span>
+</span>
+<span class="font-extrabold text-title-md tracking-tight">EcoTrack</span>
+</a>
+<!-- Desktop Nav Cluster -->
+<nav aria-label="Main Navigation" class="hidden md:flex items-center gap-8">
+<a class="text-primary font-title-md border-b-2 border-primary pb-1 transition-colors" href="#home">Home</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#how-it-works">How It Works</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#impact">Impact</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#categories">Categories</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#about">About</a>
+</nav>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-4">
+<a class="hidden sm:inline-block text-on-surface-variant hover:text-primary font-title-md text-body-md px-3 py-2 transition-colors" href="#login">Log In</a>
+<a class="inline-flex items-center gap-2 bg-primary hover:bg-primary-container text-on-primary text-title-md font-title-md px-4 py-2.5 rounded-lg shadow-sm transition-all duration-150 active:scale-95" href="#schedule">
+<span>Schedule Pickup</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</header>
+<main>
+<!-- HERO SECTION -->
+<section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-gradient-to-b from-surface-container-lowest via-surface-bright to-background" id="home">
+<div class="max-w-7xl mx-auto px-6 md:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Hero Copy Left (7 cols) -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Regulatory / Trust Pill -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant text-primary text-label-md font-label-md">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span>Next-Gen Smart Reverse Supply Chain</span>
+<span class="text-outline">|</span>
+<span class="text-secondary font-semibold">ISO 14001 Audited</span>
+</div>
+<h1 class="text-display-mobile md:text-display font-display text-primary tracking-tight leading-tight">
+              Turn Waste Into a <br class="hidden sm:block"/>
+<span class="text-secondary">Better Tomorrow.</span>
+</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl">
+              Precision automated doorstep pickups for residential high-rises, collegiate campuses, and corporate campuses across metropolitan hubs. Track traceability, reclaim raw circular value, and achieve certified net-zero goals.
+            </p>
+<!-- Dual CTA Cluster -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+<a class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-container text-on-primary font-title-md text-title-md px-7 py-3.5 rounded-lg shadow-md transition-all active:scale-95" href="#schedule">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span>Schedule a Pickup</span>
+</a>
+<button class="inline-flex items-center justify-center gap-2.5 bg-surface-container-lowest border border-outline-variant text-primary font-title-md text-title-md px-6 py-3.5 rounded-lg shadow-sm hover:bg-surface-container-low transition-all" onclick="document.getElementById('impact-calc').scrollIntoView({behavior: 'smooth'})">
+<span class="w-6 h-6 rounded-full bg-secondary-container/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="play_arrow">play_arrow</span>
+</span>
+<span>Explore Live Impact</span>
+</button>
+</div>
+<!-- Floating Micro-Metric Badges -->
+<div class="pt-6 grid grid-cols-2 sm:grid-cols-2 gap-4 max-w-lg">
+<div class="flex items-center gap-3.5 p-3.5 bg-surface-container-lowest rounded-xl border border-outline-variant/60 shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-xl" data-icon="recycling">recycling</span>
+</div>
+<div>
+<div class="text-body-sm font-label-md text-on-surface-variant">Diverted this Month</div>
+<div class="text-title-md font-title-md text-primary">14,820 kg</div>
+</div>
+</div>
+<div class="flex items-center gap-3.5 p-3.5 bg-surface-container-lowest rounded-xl border border-outline-variant/60 shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-xl" data-icon="star">star</span>
+</div>
+<div>
+<div class="text-body-sm font-label-md text-on-surface-variant">Collector Rating</div>
+<div class="text-title-md font-title-md text-primary">4.9/5 <span class="text-label-sm font-normal text-outline">(1,240 rev)</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Hero Media Graphic / Bento Panel (5 cols) -->
+<div class="lg:col-span-5 relative">
+<div class="relative bg-surface-container-lowest rounded-2xl border border-outline-variant p-4 shadow-lg overflow-hidden">
+<div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Modern clean cleantech logistics dispatch facility featuring electric autonomous green sorting trucks, sleek industrial warehouse design, high-key natural sunlight, sharp technical focus, deep forest green and pristine white color palette reflecting corporate sustainability and modern technological efficiency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPToPLpthkIkg7mle7-b1Lb5YcbRSztMyHfaA-8GjIXpOfSRG4ZM4jU21F3tPFPX0FlpMJYYlfAdbFPbzqXFzCD7D_s3_26nJI35JBBIXQ2iVG5kvfPxEE-oLiw7P5x3CIJR5JmzGN0xgevTWt5GJMenilluDPHbFBdpcwjlac52iKP_V0K0UaVWuH5UGRJv0XEdYPk3czLpu-SOctlqN2n6bcH3-tcY-Wcvc-zQZV-TdmkNXP0mjv"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-on-primary">
+<div>
+<p class="text-label-sm font-label-sm uppercase tracking-wider text-secondary-container">Metro Route Hub</p>
+<p class="text-title-md font-title-md">Downtown Hub — Fleet Alpha</p>
+</div>
+<span class="px-2 py-1 bg-surface-container-lowest/20 backdrop-blur-md rounded text-label-sm font-mono border border-white/20">LIVE GPS</span>
+</div>
+</div>
+<!-- Realtime Dispatch Subcard -->
+<div class="mt-4 p-4 rounded-xl bg-surface-container-low border border-outline-variant/60 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-secondary animate-ping"></div>
+<div>
+<h4 class="text-title-md font-title-md text-primary">Smart Route #402 En Route</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Estimated Arrival: 14 mins to Tech Hub B</p>
+</div>
+</div>
+<span class="px-2.5 py-1 bg-secondary-container text-on-secondary-container rounded-full text-label-sm font-label-sm">Active</span>
+</div>
+</div>
+<!-- Background subtle glow -->
+<div class="absolute -z-10 -top-8 -right-8 w-64 h-64 bg-secondary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- LIVE IMPACT TICKER (Demo Simulation Stats Bar) -->
+<section class="py-10 bg-surface-container-lowest border-y border-outline-variant/60">
+<div class="max-w-7xl mx-auto px-6 md:px-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-surface-container text-primary text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Demo Simulation Data</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mt-1">Aggregated Cleantech Operational Ledger</h3>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="update">update</span>
+            Synced every 60s from telemetry nodes
+          </span>
+</div>
+<!-- 4 Grid Metric Cards -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Stat 1 -->
+<div class="p-5 rounded-xl bg-surface-bright border border-outline-variant/80">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-md font-label-md text-on-surface-variant">Total Recycled Waste</span>
+<span class="material-symbols-outlined text-secondary" data-icon="inventory_2">inventory_2</span>
+</div>
+<div class="text-mono-metric font-mono-metric text-primary">84.6 <span class="text-body-md font-normal text-on-surface-variant">Tons</span></div>
+<div class="mt-2 text-label-sm font-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+<span>+18.4% vs last cycle</span>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="p-5 rounded-xl bg-surface-bright border border-outline-variant/80">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-md font-label-md text-on-surface-variant">Carbon Offset</span>
+<span class="material-symbols-outlined text-secondary" data-icon="cloud_off">cloud_off</span>
+</div>
+<div class="text-mono-metric font-mono-metric text-primary">128.4 <span class="text-body-md font-normal text-on-surface-variant">MT CO2e</span></div>
+<div class="mt-2 text-label-sm font-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="check_circle">check_circle</span>
+<span>Verified Gold Standard</span>
+</div>
+</div>
+<!-- Stat 3 -->
+<div class="p-5 rounded-xl bg-surface-bright border border-outline-variant/80">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-md font-label-md text-on-surface-variant">Verified Hubs</span>
+<span class="material-symbols-outlined text-secondary" data-icon="domain">domain</span>
+</div>
+<div class="text-mono-metric font-mono-metric text-primary">1,420+</div>
+<div class="mt-2 text-label-sm font-label-sm text-on-surface-variant">
+<span>Campuses &amp; Towers</span>
+</div>
+</div>
+<!-- Stat 4 -->
+<div class="p-5 rounded-xl bg-surface-bright border border-outline-variant/80">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-md font-label-md text-on-surface-variant">Circular Facilities</span>
+<span class="material-symbols-outlined text-secondary" data-icon="factory">factory</span>
+</div>
+<div class="text-mono-metric font-mono-metric text-primary">18 <span class="text-body-md font-normal text-on-surface-variant">Plants</span></div>
+<div class="mt-2 text-label-sm font-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="verified">verified</span>
+<span>100% Traceable Endpoints</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3-STEP INTERACTIVE PROCESS SECTION -->
+<section class="py-20 bg-background" id="how-it-works">
+<div class="max-w-7xl mx-auto px-6 md:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/30 text-secondary text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="account_tree">account_tree</span>
+<span>END-TO-END REVERSE WORKFLOW</span>
+</div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-primary tracking-tight">
+            How EcoTrack Works in 3 Simple Steps
+          </h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">
+            From your residential bin to authenticated circular recycling plants—our digital platform closes the loop with absolute verification.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+<!-- Step 1 Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-8 border border-outline-variant flex flex-col justify-between hover:shadow-md transition-shadow relative group">
+<div class="absolute top-6 right-6 text-display font-display text-surface-container-high/60 select-none">
+              01
+            </div>
+<div>
+<div class="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="alt_route">alt_route</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-3">Segregate at Source</h3>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
+                Split streams cleanly using color-coded guidelines for wet compostable organics, clean fiber paper, categorized plastics, and e-waste.
+              </p>
+</div>
+<div class="pt-4 border-t border-outline-variant/40 space-y-2">
+<div class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="check_small">check_small</span>
+<span>QR Bin Tags provided for campuses</span>
+</div>
+<div class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="check_small">check_small</span>
+<span>AI Camera Contamination Screening</span>
+</div>
+</div>
+</div>
+<!-- Step 2 Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-8 border border-outline-variant flex flex-col justify-between hover:shadow-md transition-shadow relative group">
+<div class="absolute top-6 right-6 text-display font-display text-surface-container-high/60 select-none">
+              02
+            </div>
+<div>
+<div class="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="calendar_month">calendar_month</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-3">One-Tap Scheduled Pickup</h3>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
+                Pick your preferred pickup window via our web console or mobile app. Our optimized dispatch engine routes the closest verified electric hauler.
+              </p>
+</div>
+<div class="pt-4 border-t border-outline-variant/40 space-y-2">
+<div class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="check_small">check_small</span>
+<span>Live GPS driver tracking</span>
+</div>
+<div class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="check_small">check_small</span>
+<span>Zero emission electrified haulers</span>
+</div>
+</div>
+</div>
+<!-- Step 3 Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-8 border border-outline-variant flex flex-col justify-between hover:shadow-md transition-shadow relative group">
+<div class="absolute top-6 right-6 text-display font-display text-surface-container-high/60 select-none">
+              03
+            </div>
+<div>
+<div class="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="military_tech">military_tech</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-3">Earn EcoCredits &amp; Track Offset</h3>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
+                Get weighed onsite with instant digital weighbridge receipts. Accumulate EcoCredits redeemable for sustainable goods and verified ESG carbon credits.
+              </p>
+</div>
+<div class="pt-4 border-t border-outline-variant/40 space-y-2">
+<div class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="check_small">check_small</span>
+<span>Downloadable Scope 3 ESG Audit Slips</span>
+</div>
+<div class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="check_small">check_small</span>
+<span>Brand rewards &amp; green marketplace</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- INTERACTIVE WASTE CATEGORY GRID -->
+<section class="py-20 bg-surface-container-lowest border-t border-outline-variant/60" id="categories">
+<div class="max-w-7xl mx-auto px-6 md:px-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-primary text-label-sm font-label-sm mb-3">
+<span class="material-symbols-outlined text-sm" data-icon="category">category</span>
+<span>SEGREGATION TAXONOMY</span>
+</div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-primary tracking-tight">
+              Supported Waste Streams &amp; Processing Value
+            </h2>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-md">
+            Click into each commodity stream to review our secondary processing partner specs, circular conversion rates, and current salvage yield values.
+          </p>
+</div>
+<!-- 4 Interactive Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Stream 1 -->
+<div class="bg-surface-bright rounded-2xl p-6 border border-outline-variant hover:border-secondary transition-all hover:-translate-y-1 group">
+<div class="flex items-center justify-between mb-4">
+<span class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="compost">compost</span>
+</span>
+<span class="px-2.5 py-1 bg-surface-container-lowest text-primary text-label-sm font-label-sm rounded-full border border-outline-variant">
+                Wet / Organic
+              </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-1">Organic &amp; Food Scraps</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Aerobic high-temp bio-methanation and organic micro-composting facilities.</p>
+<div class="space-y-3 pt-3 border-t border-outline-variant/40">
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Value Yield:</span>
+<span class="font-semibold text-primary">$0.04 / kg</span>
+</div>
+<div>
+<div class="flex justify-between text-label-sm font-label-sm mb-1 text-on-surface-variant">
+<span>Capacity Utilization</span>
+<span>92%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-secondary h-2 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stream 2 -->
+<div class="bg-surface-bright rounded-2xl p-6 border border-outline-variant hover:border-secondary transition-all hover:-translate-y-1 group">
+<div class="flex items-center justify-between mb-4">
+<span class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="newspaper">newspaper</span>
+</span>
+<span class="px-2.5 py-1 bg-surface-container-lowest text-primary text-label-sm font-label-sm rounded-full border border-outline-variant">
+                Dry / Fiber
+              </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-1">Paper &amp; Corrugated</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">De-inked pulping and conversion into 100% recycled packaging carton board.</p>
+<div class="space-y-3 pt-3 border-t border-outline-variant/40">
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Value Yield:</span>
+<span class="font-semibold text-primary">$0.12 / kg</span>
+</div>
+<div>
+<div class="flex justify-between text-label-sm font-label-sm mb-1 text-on-surface-variant">
+<span>Capacity Utilization</span>
+<span>78%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-secondary h-2 rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stream 3 -->
+<div class="bg-surface-bright rounded-2xl p-6 border border-outline-variant hover:border-secondary transition-all hover:-translate-y-1 group">
+<div class="flex items-center justify-between mb-4">
+<span class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="water_bottle">water_bottle</span>
+</span>
+<span class="px-2.5 py-1 bg-surface-container-lowest text-primary text-label-sm font-label-sm rounded-full border border-outline-variant">
+                Plastics #1-#7
+              </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-1">Polymer Resins</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Optical sorting and clean washing into food-grade rPET and rHDPE resin pellets.</p>
+<div class="space-y-3 pt-3 border-t border-outline-variant/40">
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Value Yield:</span>
+<span class="font-semibold text-primary">$0.28 / kg</span>
+</div>
+<div>
+<div class="flex justify-between text-label-sm font-label-sm mb-1 text-on-surface-variant">
+<span>Capacity Utilization</span>
+<span>84%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-secondary h-2 rounded-full" style="width: 84%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stream 4 -->
+<div class="bg-surface-bright rounded-2xl p-6 border border-outline-variant hover:border-secondary transition-all hover:-translate-y-1 group">
+<div class="flex items-center justify-between mb-4">
+<span class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="memory">memory</span>
+</span>
+<span class="px-2.5 py-1 bg-surface-container-lowest text-primary text-label-sm font-label-sm rounded-full border border-outline-variant">
+                Regulated E-Waste
+              </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-1">Electronics &amp; PCB</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">R2-certified hazardous component dismantling and precious metal hydrometallurgy.</p>
+<div class="space-y-3 pt-3 border-t border-outline-variant/40">
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Value Yield:</span>
+<span class="font-semibold text-primary">$1.45 / kg</span>
+</div>
+<div>
+<div class="flex justify-between text-label-sm font-label-sm mb-1 text-on-surface-variant">
+<span>Capacity Utilization</span>
+<span>64%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-secondary h-2 rounded-full" style="width: 64%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- REAL-TIME IMPACT CALCULATOR (Interactive Slider & Visualization) -->
+<section class="py-20 bg-background" id="impact-calc">
+<div class="max-w-7xl mx-auto px-6 md:px-8">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-3xl p-8 md:p-12 shadow-sm">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Left Controls (6 cols) -->
+<div class="lg:col-span-6 space-y-6">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/40 text-secondary text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="calculate">calculate</span>
+<span>REAL-TIME ESG CALCULATOR</span>
+</div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-primary tracking-tight">
+                Calculate Your Facility’s Potential Ecological Offset
+              </h2>
+<p class="text-body-md font-body-md text-on-surface-variant">
+                Adjust monthly waste estimates to forecast landfill diversion percentages, greenhouse gas reductions, and EcoCredits redeemable by your organization.
+              </p>
+<!-- Interactive Slider -->
+<div class="pt-4 space-y-3">
+<div class="flex justify-between items-center">
+<label class="text-title-md font-title-md text-primary" for="wasteSlider">Monthly Waste Generation</label>
+<span class="text-title-md font-mono font-bold text-secondary bg-surface-container-low px-3 py-1 rounded-lg border border-outline-variant/60" id="sliderValue">500 kg / mo</span>
+</div>
+<input class="w-full custom-range-slider h-2 bg-surface-container rounded-lg appearance-none cursor-pointer" id="wasteSlider" max="5000" min="100" step="50" type="range" value="500"/>
+<div class="flex justify-between text-label-sm font-label-sm text-outline">
+<span>100 kg (Small Complex)</span>
+<span>2,500 kg (University Campus)</span>
+<span>5,000 kg (Corporate Tower)</span>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-bright border border-outline-variant/60 flex items-center gap-4">
+<span class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                  All calculation constants align with the <strong class="text-primary font-medium">EPA Waste Reduction Model (WARM)</strong> and GHG Protocol Corporate Standard.
+                </p>
+</div>
+</div>
+<!-- Right Results Display (6 cols) -->
+<div class="lg:col-span-6 bg-surface-bright rounded-2xl border border-outline-variant p-6 md:p-8 space-y-6">
+<h3 class="text-headline-sm font-headline-sm text-primary">Projected Monthly Environmental Yield</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-outline-variant">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase">Landfill Diversion</span>
+<div class="text-mono-metric font-mono-metric text-primary mt-1" id="statDiversion">425 kg</div>
+<span class="text-label-sm font-label-sm text-secondary">85% Diverted Rate</span>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-outline-variant">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase">Carbon Abated</span>
+<div class="text-mono-metric font-mono-metric text-secondary mt-1" id="statCarbon">1.28 MT</div>
+<span class="text-label-sm font-label-sm text-outline">Scope 3 Reductions</span>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-outline-variant">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase">Trees Saved Equiv.</span>
+<div class="text-mono-metric font-mono-metric text-primary mt-1" id="statTrees">18 Trees</div>
+<span class="text-label-sm font-label-sm text-secondary">Forest preservation</span>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-outline-variant">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase">EcoCredits Earned</span>
+<div class="text-mono-metric font-mono-metric text-primary mt-1" id="statCredits">2,500 pts</div>
+<span class="text-label-sm font-label-sm text-secondary">~$75 Marketplace val</span>
+</div>
+</div>
+<!-- Bar Comparison Breakdown -->
+<div class="space-y-3 pt-2">
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Traditional Municipal Disposal (Landfill)</span>
+<span class="font-medium text-error">15% Diverted</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2.5">
+<div class="bg-error h-2.5 rounded-full" style="width: 15%"></div>
+</div>
+<div class="flex justify-between text-body-sm pt-2">
+<span class="text-on-surface-variant">EcoTrack Closed-Loop Reverse System</span>
+<span class="font-medium text-secondary">85% Diverted</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2.5">
+<div class="bg-secondary h-2.5 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TESTIMONIALS & SOCIAL PROOF -->
+<section class="py-20 bg-surface-container-lowest border-t border-outline-variant/60" id="about">
+<div class="max-w-7xl mx-auto px-6 md:px-8">
+<div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-primary text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span>
+<span>PROVEN INSTITUTIONAL RESULTS</span>
+</div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-primary tracking-tight">
+            Trusted by Campus Facilities, Housing Boards, &amp; Investors
+          </h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">
+            Explore how modern institutions converted waste disposal cost centers into verifiable circular ESG wins.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Testimonial 1 -->
+<div class="p-8 rounded-2xl bg-surface-bright border border-outline-variant flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-1 text-secondary mb-4">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface italic mb-6">
+                "Deploying EcoTrack across our 42 campus dormitories reduced our municipal waste haulage fee by 38% in the first semester alone. The verifiable ESG reports make our green accreditations painless."
+              </p>
+</div>
+<div class="flex items-center gap-3 pt-4 border-t border-outline-variant/60">
+<div class="w-11 h-11 rounded-full bg-primary-container text-secondary-container flex items-center justify-center font-bold text-body-md">
+                DL
+              </div>
+<div>
+<h4 class="text-title-md font-title-md text-primary leading-tight">Dr. Lena Vance</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Campus Facilities Dean, Metro University</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="p-8 rounded-2xl bg-surface-bright border border-outline-variant flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-1 text-secondary mb-4">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface italic mb-6">
+                "Our 800-unit condominium tower had terrible contamination in dry recycle chutes. EcoTrack’s doorstep pickup slots and resident EcoCredits completely transformed tenant participation."
+              </p>
+</div>
+<div class="flex items-center gap-3 pt-4 border-t border-outline-variant/60">
+<div class="w-11 h-11 rounded-full bg-primary-container text-secondary-container flex items-center justify-center font-bold text-body-md">
+                RM
+              </div>
+<div>
+<h4 class="text-title-md font-title-md text-primary leading-tight">Rajesh Mehta</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">RWA President, Emerald Heights Towers</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="p-8 rounded-2xl bg-surface-bright border border-outline-variant flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-1 text-secondary mb-4">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface italic mb-6">
+                "EcoTrack has cracked the hardest problem in municipal cleantech: high unit density logistics combined with secondary material monetization. Outstanding capital efficiency."
+              </p>
+</div>
+<div class="flex items-center gap-3 pt-4 border-t border-outline-variant/60">
+<div class="w-11 h-11 rounded-full bg-primary-container text-secondary-container flex items-center justify-center font-bold text-body-md">
+                SC
+              </div>
+<div>
+<h4 class="text-title-md font-title-md text-primary leading-tight">Sarah Chen</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">General Partner, CleanVenture Capital</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ ACCORDION SECTION -->
+<section class="py-20 bg-background border-t border-outline-variant/60">
+<div class="max-w-4xl mx-auto px-6 md:px-8">
+<div class="text-center mb-12 space-y-3">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-secondary font-semibold">Answers &amp; Clarity</span>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-primary tracking-tight">
+            Frequently Asked Questions
+          </h2>
+<p class="text-body-md font-body-md text-on-surface-variant">
+            Everything you need to know about our scheduled pickups, segregation protocol, and collector verification.
+          </p>
+</div>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<div class="border border-outline-variant rounded-xl bg-surface-container-lowest overflow-hidden transition-colors">
+<button class="w-full p-5 text-left flex justify-between items-center gap-4 hover:bg-surface-bright" onclick="toggleFaq('faq-1')">
+<span class="text-title-md font-title-md text-primary">How are collector vehicles and personnel verified?</span>
+<span class="material-symbols-outlined text-outline transition-transform duration-200" data-icon="expand_more" id="faq-icon-1">expand_more</span>
+</button>
+<div class="hidden px-5 pb-5 pt-1 text-body-md font-body-md text-on-surface-variant border-t border-outline-variant/30" id="faq-1">
+              All EcoTrack fleet haulers are background-checked, insured, and equipped with calibrated IoT digital scales. Real-time GPS location is published directly to your dashboard during your active dispatch window.
+            </div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="border border-outline-variant rounded-xl bg-surface-container-lowest overflow-hidden transition-colors">
+<button class="w-full p-5 text-left flex justify-between items-center gap-4 hover:bg-surface-bright" onclick="toggleFaq('faq-2')">
+<span class="text-title-md font-title-md text-primary">What happens if our materials have minor contamination?</span>
+<span class="material-symbols-outlined text-outline transition-transform duration-200" data-icon="expand_more" id="faq-icon-2">expand_more</span>
+</button>
+<div class="hidden px-5 pb-5 pt-1 text-body-md font-body-md text-on-surface-variant border-t border-outline-variant/30" id="faq-2">
+              Our collectors conduct a quick 30-second inspection at collection. Minor contamination is logged with educational guidance tips pushed to your account. Consistently clean segregators receive bonus multiplier EcoCredits.
+            </div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="border border-outline-variant rounded-xl bg-surface-container-lowest overflow-hidden transition-colors">
+<button class="w-full p-5 text-left flex justify-between items-center gap-4 hover:bg-surface-bright" onclick="toggleFaq('faq-3')">
+<span class="text-title-md font-title-md text-primary">Can large corporate offices integrate with our existing ESG reporting?</span>
+<span class="material-symbols-outlined text-outline transition-transform duration-200" data-icon="expand_more" id="faq-icon-3">expand_more</span>
+</button>
+<div class="hidden px-5 pb-5 pt-1 text-body-md font-body-md text-on-surface-variant border-t border-outline-variant/30" id="faq-3">
+              Yes. Enterprise accounts get access to direct REST APIs and monthly certified PDF/CSV ledger exports complying with GRI, SASB, and CDP environmental impact standards for Scope 3 emissions reporting.
+            </div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="border border-outline-variant rounded-xl bg-surface-container-lowest overflow-hidden transition-colors">
+<button class="w-full p-5 text-left flex justify-between items-center gap-4 hover:bg-surface-bright" onclick="toggleFaq('faq-4')">
+<span class="text-title-md font-title-md text-primary">Are there subscription fees or is it pay-per-pickup?</span>
+<span class="material-symbols-outlined text-outline transition-transform duration-200" data-icon="expand_more" id="faq-icon-4">expand_more</span>
+</button>
+<div class="hidden px-5 pb-5 pt-1 text-body-md font-body-md text-on-surface-variant border-t border-outline-variant/30" id="faq-4">
+              Residential users enjoy free standard pickups supported by secondary commodity value. High-volume campuses and corporate headquarters select from tailored SLAs including dedicated compactor sensors and high-frequency dispatch schedules.
+            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- FINAL CTA BANNER -->
+<section class="py-16 bg-primary text-on-primary" id="schedule">
+<div class="max-w-5xl mx-auto px-6 md:px-8 text-center space-y-6">
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg tracking-tight">
+          Ready to Modernize Waste Operations in Your Community?
+        </h2>
+<p class="text-body-lg font-body-lg text-primary-fixed max-w-2xl mx-auto">
+          Join over 1,400+ verified campuses and residential hubs. Schedule your first doorstep assessment or pilot pickup today.
+        </p>
+<div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-secondary-container hover:bg-secondary-fixed text-on-secondary-fixed font-title-md text-title-md px-8 py-4 rounded-xl shadow-lg transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="calendar_add_on">calendar_add_on</span>
+<span>Schedule Initial Pickup</span>
+</button>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary border border-outline hover:bg-surface-container-low/20 font-title-md text-title-md px-8 py-4 rounded-xl transition-all" href="#about">
+<span>Talk to Enterprise Logistics</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER (Shared Component Source of Truth) -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-8 py-6 max-w-7xl mx-auto gap-4">
+<!-- Brand & Copyright -->
+<div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+<a class="text-headline-sm font-headline-sm text-primary flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-secondary" data-icon="eco">eco</span>
+<span>EcoTrack</span>
+</a>
+<span class="hidden sm:inline text-outline">|</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+          © 2025 EcoTrack Technologies Inc. All rights reserved. Precision Cleantech Logistics.
+        </p>
+</div>
+<!-- Links Cluster -->
+<nav aria-label="Footer Links" class="flex flex-wrap justify-center items-center gap-6">
+<a class="text-on-surface-variant font-body-sm hover:text-primary transition-colors" href="#privacy">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-sm hover:text-primary transition-colors" href="#terms">Terms of Service</a>
+<a class="text-on-surface-variant font-body-sm hover:text-primary transition-colors" href="#compliance">Compliance &amp; Audits</a>
+<a class="text-on-surface-variant font-body-sm hover:text-primary transition-colors" href="#api">API Documentation</a>
+<a class="text-on-surface-variant font-body-sm hover:text-primary transition-colors" href="#contact">Contact Operations</a>
+</nav>
+</div>
+</footer>
+<!-- Inline Lightweight Micro-Interactions Script -->
+<script>
+    // FAQ Accordion Toggle
+    function toggleFaq(id) {
+      const content = document.getElementById(id);
+      const icon = document.getElementById('faq-icon-' + id.split('-')[1]);
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      }
+    }
+
+    // Dynamic Real-time Impact Calculator Slider Logic
+    const wasteSlider = document.getElementById('wasteSlider');
+    const sliderValue = document.getElementById('sliderValue');
+    const statDiversion = document.getElementById('statDiversion');
+    const statCarbon = document.getElementById('statCarbon');
+    const statTrees = document.getElementById('statTrees');
+    const statCredits = document.getElementById('statCredits');
+
+    if (wasteSlider) {
+      wasteSlider.addEventListener('input', function(e) {
+        const val = parseInt(e.target.value, 10);
+        sliderValue.textContent = `${val.toLocaleString()} kg / mo`;
+        
+        // Calculations based on EPA WARM averages
+        const divertedKg = Math.round(val * 0.85);
+        const carbonMt = (divertedKg * 0.00301).toFixed(2);
+        const treesEquiv = Math.round(divertedKg * 0.042);
+        const credits = Math.round(divertedKg * 5.88);
+
+        statDiversion.textContent = `${divertedKg.toLocaleString()} kg`;
+        statCarbon.textContent = `${carbonMt} MT`;
+        statTrees.textContent = `${treesEquiv} Trees`;
+        statCredits.textContent = `${credits.toLocaleString()} pts`;
+      });
+    }
+  </script>
+</body></html>

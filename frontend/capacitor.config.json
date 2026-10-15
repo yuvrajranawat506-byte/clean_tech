@@ -1,0 +1,9 @@
+{
+  "appId": "io.ecotrack.app",
+  "appName": "EcoTrack",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": true,
+    "captureInput": true
+  }
+}

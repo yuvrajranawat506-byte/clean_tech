@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrack - Schedule Waste Pickup</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#dae2fd",
+            "surface-container-lowest": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-secondary": "#ffffff",
+            "surface-container-highest": "#dae2fd",
+            "surface-tint": "#2b6954",
+            "surface-bright": "#faf8ff",
+            "surface-container": "#eaedff",
+            "on-secondary-fixed": "#002113",
+            "on-primary-fixed": "#002117",
+            "on-background": "#131b2e",
+            "background": "#faf8ff",
+            "error": "#ba1a1a",
+            "on-primary-fixed-variant": "#0b513d",
+            "primary": "#003527",
+            "tertiary-fixed-dim": "#80d5cb",
+            "outline-variant": "#bfc9c3",
+            "outline": "#707974",
+            "on-tertiary-fixed": "#00201d",
+            "on-secondary-container": "#00714d",
+            "on-primary-container": "#80bea6",
+            "primary-container": "#064e3b",
+            "surface-container-high": "#e2e7ff",
+            "on-surface-variant": "#404944",
+            "tertiary-fixed": "#9cf2e8",
+            "tertiary-container": "#004d47",
+            "on-tertiary-container": "#6ac0b6",
+            "inverse-primary": "#95d3ba",
+            "secondary-fixed": "#6ffbbe",
+            "surface-dim": "#d2d9f4",
+            "primary-fixed": "#b0f0d6",
+            "on-surface": "#131b2e",
+            "secondary-fixed-dim": "#4edea3",
+            "error-container": "#ffdad6",
+            "tertiary": "#003430",
+            "on-secondary-fixed-variant": "#005236",
+            "on-tertiary-fixed-variant": "#00504a",
+            "inverse-surface": "#283044",
+            "secondary": "#006c49",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "primary-fixed-dim": "#95d3ba",
+            "inverse-on-surface": "#eef0ff",
+            "secondary-container": "#6cf8bb",
+            "surface-container-low": "#f2f3ff",
+            "on-error": "#ffffff",
+            "surface": "#faf8ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "space-md": "1rem",
+            "gutter-mobile": "1rem",
+            "margin": "2rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "title-md": ["Inter"],
+            "mono-metric": ["Inter"],
+            "headline-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "display-mobile": ["Inter"],
+            "label-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "display": ["Inter"],
+            "headline-lg-mobile": ["Inter"]
+          },
+          "fontSize": {
+            "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "mono-metric": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "display-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="h-full bg-background text-on-surface antialiased overflow-x-hidden">
+<!-- LEFT APP SIDEBAR (Shared Component: User SideNavBar) -->
+<aside class="flex flex-col justify-between h-screen w-64 p-4 fixed left-0 top-0 z-40 bg-surface-container-lowest dark:bg-inverse-surface border-r border-outline-variant shadow-sm">
+<!-- Top Branding & Navigation -->
+<div class="space-y-6">
+<!-- Portal Brand Anchor -->
+<div class="flex items-center gap-3 px-2 py-2">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="recycling">recycling</span>
+</div>
+<div>
+<div class="text-title-md font-title-md text-primary dark:text-inverse-primary tracking-tight">EcoTrack Portal</div>
+<div class="text-label-sm font-label-sm text-outline">User Dashboard</div>
+</div>
+</div>
+<!-- Main Action CTA -->
+<button class="w-full flex items-center justify-center gap-2 bg-primary-container text-on-primary py-2.5 px-4 rounded-lg font-title-md text-title-md hover:bg-secondary transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg" data-icon="add_circle">add_circle</span>
+        Schedule Pickup
+      </button>
+<!-- Navigation Tabs (Tabs: Overview, Schedule Pickup (ACTIVE), My Pickups, Rewards & Badges, Environmental Impact) -->
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant font-body-md rounded-lg hover:bg-surface-container-low transition-all" href="#overview">
+<span class="material-symbols-outlined text-xl" data-icon="dashboard">dashboard</span>
+          Overview
+        </a>
+<!-- Active Tab: Schedule Pickup -->
+<a class="flex items-center gap-3 px-3 py-2 text-primary dark:text-primary-fixed font-title-md bg-secondary-container/20 rounded-lg transition-all" href="#schedule">
+<span class="material-symbols-outlined text-xl" data-icon="calendar_add_on" data-weight="fill" style="font-variation-settings: 'FILL' 1;">calendar_add_on</span>
+          Schedule Pickup
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant font-body-md rounded-lg hover:bg-surface-container-low transition-all" href="#my-pickups">
+<span class="material-symbols-outlined text-xl" data-icon="local_shipping">local_shipping</span>
+          My Pickups
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant font-body-md rounded-lg hover:bg-surface-container-low transition-all" href="#rewards">
+<span class="material-symbols-outlined text-xl" data-icon="military_tech">military_tech</span>
+          Rewards &amp; Badges
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant font-body-md rounded-lg hover:bg-surface-container-low transition-all" href="#impact">
+<span class="material-symbols-outlined text-xl" data-icon="eco">eco</span>
+          Environmental Impact
+        </a>
+</nav>
+</div>
+<!-- Sidebar Footer -->
+<div class="border-t border-outline-variant pt-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant font-body-md rounded-lg hover:bg-surface-container-low transition-all" href="#profile">
+<span class="material-symbols-outlined text-xl" data-icon="person">person</span>
+        Profile
+      </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant font-body-md rounded-lg hover:bg-surface-container-low transition-all" href="#logout">
+<span class="material-symbols-outlined text-xl" data-icon="logout">logout</span>
+        Sign Out
+      </a>
+<!-- Facility Active Status Pill -->
+<div class="mt-3 p-2.5 rounded-lg bg-surface-container border border-outline-variant/60 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<span class="text-label-sm font-label-sm text-primary">Hub 04 Online</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline">v2.4.9</span>
+</div>
+</div>
+</aside>
+<!-- MAIN VIEWPORT CANVAS (Offset for 64-width Sidebar) -->
+<div class="pl-64 flex flex-col min-h-screen">
+<!-- TOP APP BAR WITH BREADCRUMB & LOGISTICS HOTLINE -->
+<header class="sticky top-0 z-30 bg-surface-container-lowest border-b border-outline-variant shadow-sm px-8 py-3.5 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex items-center text-body-md font-body-md text-on-surface-variant">
+<span class="hover:text-primary cursor-pointer transition-colors">Dashboard</span>
+<span class="material-symbols-outlined mx-2 text-base text-outline" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary font-title-md">New Pickup Request</span>
+</div>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary-container/30 text-secondary border border-secondary/20">
+          Smart Allocation Active
+        </span>
+</div>
+<div class="flex items-center gap-4">
+<!-- Help / Dispatch Hotline Badge -->
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/80 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg text-primary" data-icon="support_agent">support_agent</span>
+<span class="text-label-md font-label-md">Dispatch Helpline: <span class="text-primary font-bold">1800-ECO-TRK</span></span>
+</div>
+<!-- Notification Bell -->
+<button aria-label="Notifications" class="w-9 h-9 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors relative">
+<span class="material-symbols-outlined text-lg" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+<!-- User Chip -->
+<div class="flex items-center gap-2 pl-2 border-l border-outline-variant">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-title-md text-label-sm">
+            RK
+          </div>
+<div class="text-left hidden sm:block">
+<div class="text-label-md font-label-md text-on-surface leading-tight">Rohit Kumar</div>
+<div class="text-label-sm font-label-sm text-outline">Tier 2 EcoHero</div>
+</div>
+</div>
+</div>
+</header>
+<!-- CONTENT WRAPPER -->
+<main class="flex-1 p-8 max-w-7xl w-full mx-auto">
+<!-- Page Title & Micro Context -->
+<div class="mb-8">
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight">Schedule Waste Consignment</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">
+          Precision waste sorting, doorstep verification, and auditable diversion tracking for residential &amp; commercial sites.
+        </p>
+</div>
+<!-- TWO-COLUMN WORKFLOW GRID (Left Form Steps, Right Sticky Summary) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- MAIN INTERACTIVE FORM COLUMN (8 COLUMNS) -->
+<div class="lg:col-span-8 space-y-6">
+<!-- STEP 1: SELECT WASTE STREAM -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm">
+<div class="flex items-center justify-between pb-4 border-b border-outline-variant mb-5">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-primary-container text-on-primary text-label-md font-title-md flex items-center justify-center">1</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Select Waste Stream</h2>
+<p class="text-body-sm font-body-sm text-outline">Select all applicable segregated categories for this pickup.</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm px-2.5 py-1 rounded bg-surface-container text-on-surface-variant">Multiple Selection</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="streamGrid">
+<!-- Stream 1: Wet/Organic -->
+<label class="cursor-pointer border-2 border-primary bg-secondary-container/10 rounded-xl p-4 flex flex-col justify-between transition-all hover:border-primary relative stream-card" data-category="organic">
+<input checked="" class="absolute top-4 right-4 h-4 w-4 rounded border-outline text-primary-container focus:ring-secondary stream-checkbox" type="checkbox"/>
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-3">
+<span class="material-symbols-outlined text-2xl" data-icon="compost">compost</span>
+</div>
+<div class="text-title-md font-title-md text-on-surface">Wet / Organic Waste</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1 leading-snug">
+                    Kitchen scraps, raw food remains, coffee grounds, and garden biomass.
+                  </p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/60 flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-secondary font-semibold">10 EcoPoints / kg</span>
+<span class="text-label-sm font-label-sm text-outline">Hub: Bio-Digester #2</span>
+</div>
+</label>
+<!-- Stream 2: Dry / Paper & Cardboard -->
+<label class="cursor-pointer border border-outline-variant rounded-xl p-4 flex flex-col justify-between transition-all hover:border-primary bg-surface-container-lowest relative stream-card" data-category="paper">
+<input checked="" class="absolute top-4 right-4 h-4 w-4 rounded border-outline text-primary-container focus:ring-secondary stream-checkbox" type="checkbox"/>
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-3">
+<span class="material-symbols-outlined text-2xl" data-icon="description">description</span>
+</div>
+<div class="text-title-md font-title-md text-on-surface">Dry / Paper &amp; Cardboard</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1 leading-snug">
+                    Corrugated boxes, newspapers, shredded mail, and office stationery.
+                  </p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/60 flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-secondary font-semibold">8 EcoPoints / kg</span>
+<span class="text-label-sm font-label-sm text-outline">Hub: Kraft Pulp Facility</span>
+</div>
+</label>
+<!-- Stream 3: Plastic Packaging -->
+<label class="cursor-pointer border border-outline-variant rounded-xl p-4 flex flex-col justify-between transition-all hover:border-primary bg-surface-container-lowest relative stream-card" data-category="plastic">
+<input class="absolute top-4 right-4 h-4 w-4 rounded border-outline text-primary-container focus:ring-secondary stream-checkbox" type="checkbox"/>
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-3">
+<span class="material-symbols-outlined text-2xl" data-icon="local_drink">local_drink</span>
+</div>
+<div class="text-title-md font-title-md text-on-surface">Plastic Packaging</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1 leading-snug">
+                    PET bottles, HDPE containers, cleaned pouches &amp; multilayer films.
+                  </p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/60 flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-secondary font-semibold">12 EcoPoints / kg</span>
+<span class="text-label-sm font-label-sm text-outline">Hub: Poly Polymer Plant</span>
+</div>
+</label>
+<!-- Stream 4: Electronic Waste -->
+<label class="cursor-pointer border border-outline-variant rounded-xl p-4 flex flex-col justify-between transition-all hover:border-primary bg-surface-container-lowest relative stream-card" data-category="ewaste">
+<input class="absolute top-4 right-4 h-4 w-4 rounded border-outline text-primary-container focus:ring-secondary stream-checkbox" type="checkbox"/>
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-3">
+<span class="material-symbols-outlined text-2xl" data-icon="memory">memory</span>
+</div>
+<div class="text-title-md font-title-md text-on-surface">Electronic Waste</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1 leading-snug">
+                    Spent lithium batteries, circuit boards, peripheral cables, broken gadgets.
+                  </p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/60 flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-secondary font-semibold">25 EcoPoints / kg</span>
+<span class="text-label-sm font-label-sm text-outline">Hub: E-Hazard SafeVault</span>
+</div>
+</label>
+</div>
+</section>
+<!-- STEP 2: ESTIMATED QUANTITY & BAG COUNT -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm">
+<div class="flex items-center justify-between pb-4 border-b border-outline-variant mb-5">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-primary-container text-on-primary text-label-md font-title-md flex items-center justify-center">2</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Estimated Quantity &amp; Volume</h2>
+<p class="text-body-sm font-body-sm text-outline">Assists our dispatch route payload capacity planning.</p>
+</div>
+</div>
+<!-- Live EcoPoints Reward Pill -->
+<div class="flex items-center gap-2 bg-secondary-container/30 border border-secondary/30 px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-secondary text-base" data-icon="stars" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-label-md font-label-md text-primary font-bold" id="ecoPointsBadge">You'll earn ~85 EcoPoints!</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+<!-- Slider Controller -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<label class="text-label-md font-label-md text-on-surface" for="weightSlider">Consignment Weight (kg)</label>
+<span class="text-headline-sm font-mono-metric text-primary" id="weightDisplay">8.5 kg</span>
+</div>
+<input class="w-full h-2 bg-surface-container rounded-lg appearance-none cursor-pointer accent-primary" id="weightSlider" max="50" min="1" step="0.5" type="range" value="8.5"/>
+<div class="flex justify-between text-label-sm font-label-sm text-outline">
+<span>1.0 kg (Light Bag)</span>
+<span>25.0 kg</span>
+<span>50.0 kg (Max Standard)</span>
+</div>
+</div>
+<!-- Bag Stepper Counter -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/60 flex items-center justify-between">
+<div>
+<div class="text-title-md font-title-md text-on-surface">Standard Segregated Bags</div>
+<div class="text-body-sm font-body-sm text-outline">Standard 30L biodegradable sack size</div>
+</div>
+<div class="flex items-center gap-3">
+<button aria-label="Decrease bags" class="w-9 h-9 rounded-lg bg-surface-container-lowest border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors font-bold" id="btnMinusBags">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="text-headline-sm font-mono-metric text-primary w-6 text-center" id="bagCount">3</span>
+<button aria-label="Increase bags" class="w-9 h-9 rounded-lg bg-surface-container-lowest border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors font-bold" id="btnPlusBags">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bin Capacity Segmented Gauge -->
+<div class="mt-6 pt-5 border-t border-outline-variant/60">
+<div class="flex justify-between text-label-sm font-label-sm mb-2">
+<span class="text-on-surface-variant font-medium">Van Compartment Volume Utilization</span>
+<span class="text-secondary font-bold">17% Allocated (Optimal)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden flex">
+<div class="bg-secondary h-full rounded-full" style="width: 17%"></div>
+</div>
+</div>
+</section>
+<!-- STEP 3: LOCATION & ADDRESS SELECTION -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm">
+<div class="flex items-center justify-between pb-4 border-b border-outline-variant mb-5">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-primary-container text-on-primary text-label-md font-title-md flex items-center justify-center">3</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Location &amp; Address Verification</h2>
+<p class="text-body-sm font-body-sm text-outline">Collector dispatch route will be locked to this verified geolocation.</p>
+</div>
+</div>
+<button class="text-label-md font-label-md text-secondary hover:text-primary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="add_location_alt">add_location_alt</span>
+                Add New Pickup Address
+              </button>
+</div>
+<!-- Saved Address Radio Card -->
+<div class="space-y-4">
+<label class="cursor-pointer block border-2 border-primary bg-secondary-container/10 rounded-xl p-4 relative transition-all">
+<div class="flex items-start justify-between">
+<div class="flex items-start gap-3">
+<input checked="" class="mt-1 h-4 w-4 border-outline text-primary-container focus:ring-secondary" name="address" type="radio"/>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-title-md font-title-md text-on-surface">Home - Primary Residence</span>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-primary-container text-on-primary">Default</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">
+                        Flat 402, Block B, Green Glen Layout, Bellandur, Bengaluru - 560103
+                      </p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline mt-2">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs" data-icon="pin_drop">pin_drop</span> Lat: 12.9260° N, 77.6762° E</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs" data-icon="call">call</span> +91 98451 22091</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</label>
+<!-- Map Pin Preview Widget -->
+<div class="relative rounded-xl overflow-hidden border border-outline-variant bg-surface-container h-44 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A high-contrast clean GIS satellite map overview of Bellandur Bengaluru showing precision route vectors and a glowing emerald geofence pin for waste collection logistics. The interface uses deep evergreen hues, crisp structural gridlines, and clean emerald point markers denoting an urban green logistics corridor under bright daytime light." data-location="Bengaluru" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzPrp8OMGhnC497m8dV5rDp99IVE6dFIz_wWCRzUOhLMqAuAqhjXwct-vl2FBMrFjyTnue_zMLfN5uLPCWShdlZJ23civ4JSsF_Vwl73pnMZX5QZrYLdAV0mSO2z6hHhObU87UDHEys_QLl7xonR-omjPh8qJac7sVBNen7wMiuoB4gIzoZSHZzfsnBOAxm5SKu0dnzUqqK22HYX50dMcP_OD86f-jXqDllVmqF_WJpJKiLIb05jMh"/>
+<div class="absolute inset-0 bg-primary/20 backdrop-blur-[1px] flex items-center justify-center">
+<div class="bg-surface-container-lowest px-4 py-2 rounded-xl border border-outline shadow-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-xl animate-bounce" data-icon="location_on" data-weight="fill" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<div class="text-left">
+<div class="text-label-sm font-label-sm text-primary font-bold">Collector Navigation Geotag</div>
+<div class="text-label-sm font-label-sm text-outline">Green Glen Corridor • Bellandur Sector 4</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP 4: SCHEDULE DATE & TIME SLOT -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm">
+<div class="flex items-center justify-between pb-4 border-b border-outline-variant mb-5">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-primary-container text-on-primary text-label-md font-title-md flex items-center justify-center">4</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Schedule Date &amp; Time Slot</h2>
+<p class="text-body-sm font-body-sm text-outline">Zero-emission electric cargo vans operate across three daily windows.</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-secondary font-semibold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> 8 Slots Available
+              </span>
+</div>
+<!-- Date Selector Chips -->
+<div class="mb-5">
+<label class="text-label-md font-label-md text-on-surface block mb-2">Service Day</label>
+<div class="grid grid-cols-3 gap-3">
+<button class="date-chip py-3 px-4 rounded-xl border-2 border-primary bg-secondary-container/20 text-center font-title-md text-primary transition-all" type="button">
+<div class="text-label-sm font-label-sm text-secondary">Today</div>
+<div class="text-title-md font-title-md">24 Oct</div>
+</button>
+<button class="date-chip py-3 px-4 rounded-xl border border-outline-variant bg-surface-container-lowest text-center font-body-md text-on-surface hover:border-primary transition-all" type="button">
+<div class="text-label-sm font-label-sm text-outline">Tomorrow</div>
+<div class="text-title-md font-title-md">25 Oct</div>
+</button>
+<button class="date-chip py-3 px-4 rounded-xl border border-outline-variant bg-surface-container-lowest text-center font-body-md text-on-surface hover:border-primary transition-all flex flex-col items-center justify-center" type="button">
+<div class="text-label-sm font-label-sm text-outline">Pick Custom</div>
+<div class="text-title-md font-title-md flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_month">calendar_month</span> 26+ Oct
+                  </div>
+</button>
+</div>
+</div>
+<!-- Time Slots -->
+<div>
+<label class="text-label-md font-label-md text-on-surface block mb-2">Dispatch Window</label>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<label class="cursor-pointer border-2 border-primary bg-secondary-container/20 rounded-xl p-3.5 flex items-center justify-between slot-card transition-all">
+<div class="flex items-center gap-2.5">
+<input checked="" class="h-4 w-4 border-outline text-primary-container focus:ring-secondary" name="timeSlot" type="radio"/>
+<div>
+<div class="text-title-md font-title-md text-on-surface">Morning</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">08:00 – 11:00 AM</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-lg" data-icon="wb_sunny">wb_sunny</span>
+</label>
+<label class="cursor-pointer border border-outline-variant rounded-xl p-3.5 flex items-center justify-between slot-card transition-all hover:border-primary bg-surface-container-lowest">
+<div class="flex items-center gap-2.5">
+<input class="h-4 w-4 border-outline text-primary-container focus:ring-secondary" name="timeSlot" type="radio"/>
+<div>
+<div class="text-title-md font-title-md text-on-surface">Afternoon</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">01:00 – 04:00 PM</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-lg" data-icon="light_mode">light_mode</span>
+</label>
+<label class="cursor-pointer border border-outline-variant rounded-xl p-3.5 flex items-center justify-between slot-card transition-all hover:border-primary bg-surface-container-lowest">
+<div class="flex items-center gap-2.5">
+<input class="h-4 w-4 border-outline text-primary-container focus:ring-secondary" name="timeSlot" type="radio"/>
+<div>
+<div class="text-title-md font-title-md text-on-surface">Evening</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">05:00 – 08:00 PM</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-lg" data-icon="nights_stay">nights_stay</span>
+</label>
+</div>
+</div>
+</section>
+<!-- STEP 5: SPECIAL HANDLING & BAG VERIFICATION AUDIT PHOTO -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm">
+<div class="flex items-center justify-between pb-4 border-b border-outline-variant mb-5">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-primary-container text-on-primary text-label-md font-title-md flex items-center justify-center">5</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Handling Directives &amp; Audit Photo</h2>
+<p class="text-body-sm font-body-sm text-outline">Optional prep details to accelerate field weighing &amp; sorting.</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-outline">Optional Step</span>
+</div>
+<div class="space-y-4">
+<!-- Text Area -->
+<div>
+<label class="text-label-md font-label-md text-on-surface block mb-1.5" for="instructions">Special Handling Notes</label>
+<textarea class="w-full rounded-lg border-outline text-body-md font-body-md p-3 focus:border-secondary focus:ring-2 focus:ring-secondary/20 placeholder:text-outline/70" id="instructions" placeholder="e.g. Cardboard boxes are flattened and tied with hemp twine; wet waste is inside double compostable liners on the porch." rows="2"></textarea>
+</div>
+<!-- Drag and Drop Photo Zone -->
+<div>
+<label class="text-label-md font-label-md text-on-surface block mb-1.5">Pre-Sort Photo Verification (AI Segregation Audit)</label>
+<div class="border-2 border-dashed border-outline-variant hover:border-secondary rounded-xl p-5 text-center bg-surface-container-low transition-all cursor-pointer">
+<span class="material-symbols-outlined text-3xl text-secondary mb-2" data-icon="add_a_photo">add_a_photo</span>
+<div class="text-title-md font-title-md text-primary">Upload Segregated Bag Photograph</div>
+<p class="text-body-sm font-body-sm text-outline mt-0.5">PNG, JPG or HEIC up to 10MB • Auto-qualifies for fast verification track</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- STICKY SUMMARY SIDEBAR (4 COLUMNS) -->
+<aside class="lg:col-span-4 sticky top-20">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm space-y-6">
+<!-- Header -->
+<div class="flex items-center justify-between pb-4 border-b border-outline-variant">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-primary">Consignment Summary</h3>
+<span class="text-label-sm font-label-sm text-outline">Order Draft #REQ-8840</span>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-secondary-container text-on-secondary-container font-semibold">
+                Draft
+              </span>
+</div>
+<!-- Breakdown Matrix -->
+<div class="space-y-3.5">
+<div class="flex justify-between items-center text-body-md font-body-md">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-secondary" data-icon="category">category</span>
+                  Streams Selected
+                </span>
+<span class="text-on-surface font-title-md" id="summaryStreamsCount">2 Streams</span>
+</div>
+<!-- Stream Tags -->
+<div class="flex flex-wrap gap-1.5 pt-1" id="streamTagsList">
+<span class="px-2 py-1 rounded-md text-label-sm font-label-sm bg-surface-container text-primary font-medium">Wet / Organic</span>
+<span class="px-2 py-1 rounded-md text-label-sm font-label-sm bg-surface-container text-primary font-medium">Dry / Paper</span>
+</div>
+<div class="flex justify-between items-center text-body-md font-body-md pt-2 border-t border-outline-variant/60">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-secondary" data-icon="scale">scale</span>
+                  Total Estimated Weight
+                </span>
+<span class="text-on-surface font-title-md" id="summaryWeight">8.5 kg</span>
+</div>
+<div class="flex justify-between items-center text-body-md font-body-md">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-secondary" data-icon="shopping_bag">shopping_bag</span>
+                  Bag Units
+                </span>
+<span class="text-on-surface font-title-md" id="summaryBags">3 Bags</span>
+</div>
+<div class="flex justify-between items-center text-body-md font-body-md">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-secondary" data-icon="schedule">schedule</span>
+                  Scheduled Slot
+                </span>
+<span class="text-on-surface font-title-md">Today, Morning</span>
+</div>
+<div class="flex justify-between items-start text-body-md font-body-md pt-2 border-t border-outline-variant/60">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-secondary" data-icon="domain">domain</span>
+                  Assigned Partner Hub
+                </span>
+<div class="text-right">
+<div class="text-label-md font-title-md text-primary">Apex CleanTech Hub #4</div>
+<div class="text-label-sm font-label-sm text-outline">Bellandur North Ward</div>
+</div>
+</div>
+</div>
+<!-- OTP Authentication Preview Box -->
+<div class="bg-surface-container p-4 rounded-xl border border-outline-variant/80">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-semibold">Collector Verification Code</span>
+<span class="material-symbols-outlined text-base text-primary" data-icon="lock">lock</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="text-headline-sm font-mono-metric tracking-wider text-primary">OTP: 4892</div>
+<span class="text-label-sm font-label-sm text-outline">Share at pickup door</span>
+</div>
+</div>
+<!-- Reward Summary Highlight -->
+<div class="p-3.5 rounded-xl bg-secondary-container/20 border border-secondary/30 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-xl" data-icon="workspace_premium" data-weight="fill" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div>
+<div class="text-title-md font-title-md text-primary">Estimated Reward: ~85 Pts</div>
+<div class="text-label-sm font-label-sm text-outline">Redeemable for utility credits</div>
+</div>
+</div>
+<!-- Action Button: Trigger Confirmation -->
+<div class="space-y-2 pt-2">
+<button class="w-full bg-primary-container text-on-primary py-3 px-4 rounded-xl font-title-md text-title-md hover:bg-secondary active:scale-[0.99] transition-all shadow-md flex items-center justify-center gap-2" id="btnConfirmPickup">
+<span class="material-symbols-outlined text-xl" data-icon="verified">verified</span>
+                Confirm &amp; Schedule Pickup
+              </button>
+<p class="text-center text-label-sm font-label-sm text-outline">
+                No cancellation fee up to 60 mins before slot start.
+              </p>
+</div>
+</div>
+<!-- Compliance & Traceability Micro-Badge -->
+<div class="mt-4 p-3 rounded-lg border border-outline-variant/60 bg-surface-container-lowest flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="security">security</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant leading-tight">
+              100% Traceable chain of custody audited under ISO 14001 Environmental Standard.
+            </span>
+</div>
+</aside>
+</div>
+</main>
+<!-- FOOTER (Shared Component: Footer) -->
+<footer class="mt-auto bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-8 py-6 max-w-7xl mx-auto gap-4">
+<!-- Copyright -->
+<div class="text-body-sm font-body-sm text-on-surface-variant dark:text-surface-variant">
+          © 2025 EcoTrack Technologies Inc. All rights reserved. Precision Cleantech Logistics.
+        </div>
+<!-- Links -->
+<div class="flex flex-wrap items-center gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant font-body-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#privacy">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#terms">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#compliance">Compliance &amp; Audits</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#api">API Documentation</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#contact">Contact Operations</a>
+</div>
+</div>
+</footer>
+</div>
+<!-- SUCCESS MODAL PREVIEW (Triggered upon clicking Confirm) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden items-center justify-center p-4" id="successModal">
+<div class="bg-surface-container-lowest rounded-2xl max-w-lg w-full p-8 border border-outline-variant shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+<!-- Close button -->
+<button aria-label="Close modal" class="absolute top-5 right-5 text-outline hover:text-on-surface transition-colors" id="btnCloseModal">
+<span class="material-symbols-outlined text-2xl" data-icon="close">close</span>
+</button>
+<!-- Success Icon -->
+<div class="w-16 h-16 rounded-full bg-secondary-container/30 border border-secondary/40 text-secondary flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-4xl" data-icon="task_alt" data-weight="fill" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+<div class="text-center mb-6">
+<span class="text-label-md font-label-md px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-semibold uppercase tracking-wider">
+          Consignment Confirmed
+        </span>
+<h2 class="text-headline-lg font-headline-lg text-primary mt-2">Pickup Booked Successfully!</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">
+          Your collection request has been assigned to Driver Ramesh (Vehicle #KA-03-ET-102).
+        </p>
+</div>
+<!-- Manifest Summary Card -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant space-y-3 mb-6">
+<div class="flex justify-between items-center">
+<span class="text-label-md font-label-md text-outline">Tracking ID</span>
+<span class="text-title-md font-mono-metric text-primary font-bold">#ET-9021</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-label-md font-label-md text-outline">Time Slot</span>
+<span class="text-body-md font-body-md text-on-surface font-medium">Today • 08:00 – 11:00 AM</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-label-md font-label-md text-outline">Doorstep Verification OTP</span>
+<span class="text-headline-sm font-mono-metric text-secondary font-bold">4892</span>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-outline-variant/60">
+<span class="text-label-md font-label-md text-outline">Credited On Inspection</span>
+<span class="text-body-md font-body-md text-primary font-bold">~85 EcoPoints</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-3">
+<button class="w-full py-2.5 px-4 rounded-lg border border-outline-variant text-on-surface font-title-md text-body-md hover:bg-surface-container transition-all" id="btnDismissModal">
+          Back to Portal
+        </button>
+<button class="w-full py-2.5 px-4 rounded-lg bg-primary-container text-on-primary font-title-md text-body-md hover:bg-secondary transition-all flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-base" data-icon="route">route</span>
+          Track Fleet Van
+        </button>
+</div>
+</div>
+</div>
+<!-- INTERACTION LOGIC (Vanilla JS) -->
+<script>
+    // Elements
+    const weightSlider = document.getElementById('weightSlider');
+    const weightDisplay = document.getElementById('weightDisplay');
+    const summaryWeight = document.getElementById('summaryWeight');
+    const ecoPointsBadge = document.getElementById('ecoPointsBadge');
+    
+    const bagCount = document.getElementById('bagCount');
+    const summaryBags = document.getElementById('summaryBags');
+    const btnMinusBags = document.getElementById('btnMinusBags');
+    const btnPlusBags = document.getElementById('btnPlusBags');
+
+    const streamCards = document.querySelectorAll('.stream-card');
+    const streamCheckboxes = document.querySelectorAll('.stream-checkbox');
+    const summaryStreamsCount = document.getElementById('summaryStreamsCount');
+
+    const btnConfirmPickup = document.getElementById('btnConfirmPickup');
+    const successModal = document.getElementById('successModal');
+    const btnCloseModal = document.getElementById('btnCloseModal');
+    const btnDismissModal = document.getElementById('btnDismissModal');
+
+    // Weight slider updates
+    weightSlider.addEventListener('input', (e) => {
+      const val = parseFloat(e.target.value).toFixed(1);
+      weightDisplay.textContent = `${val} kg`;
+      summaryWeight.textContent = `${val} kg`;
+      
+      // Dynamic EcoPoints (approx 10 pts per kg average)
+      const points = Math.round(val * 10);
+      ecoPointsBadge.textContent = `You'll earn ~${points} EcoPoints!`;
+    });
+
+    // Bag Stepper
+    let bags = 3;
+    btnMinusBags.addEventListener('click', () => {
+      if (bags > 1) {
+        bags--;
+        bagCount.textContent = bags;
+        summaryBags.textContent = `${bags} Bags`;
+      }
+    });
+
+    btnPlusBags.addEventListener('click', () => {
+      if (bags < 20) {
+        bags++;
+        bagCount.textContent = bags;
+        summaryBags.textContent = `${bags} Bags`;
+      }
+    });
+
+    // Stream category interactive selection
+    streamCheckboxes.forEach((cb) => {
+      cb.addEventListener('change', () => {
+        const card = cb.closest('.stream-card');
+        if (cb.checked) {
+          card.classList.remove('border-outline-variant', 'bg-surface-container-lowest');
+          card.classList.add('border-primary', 'border-2', 'bg-secondary-container/10');
+        } else {
+          card.classList.remove('border-primary', 'border-2', 'bg-secondary-container/10');
+          card.classList.add('border-outline-variant', 'bg-surface-container-lowest');
+        }
+        updateSelectedStreams();
+      });
+    });
+
+    function updateSelectedStreams() {
+      const checkedBoxes = document.querySelectorAll('.stream-checkbox:checked');
+      summaryStreamsCount.textContent = `${checkedBoxes.length} Stream${checkedBoxes.length === 1 ? '' : 's'}`;
+    }
+
+    // Date Chips toggle
+    const dateChips = document.querySelectorAll('.date-chip');
+    dateChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        dateChips.forEach(c => {
+          c.classList.remove('border-2', 'border-primary', 'bg-secondary-container/20', 'text-primary');
+          c.classList.add('border-outline-variant', 'bg-surface-container-lowest');
+        });
+        chip.classList.remove('border-outline-variant', 'bg-surface-container-lowest');
+        chip.classList.add('border-2', 'border-primary', 'bg-secondary-container/20', 'text-primary');
+      });
+    });
+
+    // Slot toggle
+    const slotCards = document.querySelectorAll('.slot-card');
+    slotCards.forEach(card => {
+      const radio = card.querySelector('input[type="radio"]');
+      card.addEventListener('click', () => {
+        slotCards.forEach(c => {
+          c.classList.remove('border-2', 'border-primary', 'bg-secondary-container/20');
+          c.classList.add('border-outline-variant', 'bg-surface-container-lowest');
+        });
+        card.classList.remove('border-outline-variant', 'bg-surface-container-lowest');
+        card.classList.add('border-2', 'border-primary', 'bg-secondary-container/20');
+        radio.checked = true;
+      });
+    });
+
+    // Modal triggers
+    btnConfirmPickup.addEventListener('click', () => {
+      successModal.classList.remove('hidden');
+      successModal.classList.add('flex');
+    });
+
+    const closeModal = () => {
+      successModal.classList.add('hidden');
+      successModal.classList.remove('flex');
+    };
+
+    btnCloseModal.addEventListener('click', closeModal);
+    btnDismissModal.addEventListener('click', closeModal);
+  </script>
+</body></html>

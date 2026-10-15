@@ -1,0 +1,25 @@
+{
+  "short_name": "EcoTrack",
+  "name": "EcoTrack — Smart Cleantech Waste Platform",
+  "description": "Smart Waste Management, Doorstep Consignment & Recycling Rewards",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#faf8ff",
+  "theme_color": "#003527",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/"
+}

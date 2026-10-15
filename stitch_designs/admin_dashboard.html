@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrack Operations Control &amp; Logistics Admin Console</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Inter Google Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#dae2fd",
+            "surface-container-lowest": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-secondary": "#ffffff",
+            "surface-container-highest": "#dae2fd",
+            "surface-tint": "#2b6954",
+            "surface-bright": "#faf8ff",
+            "surface-container": "#eaedff",
+            "on-secondary-fixed": "#002113",
+            "on-primary-fixed": "#002117",
+            "on-background": "#131b2e",
+            "background": "#faf8ff",
+            "error": "#ba1a1a",
+            "on-primary-fixed-variant": "#0b513d",
+            "primary": "#003527",
+            "tertiary-fixed-dim": "#80d5cb",
+            "outline-variant": "#bfc9c3",
+            "outline": "#707974",
+            "on-tertiary-fixed": "#00201d",
+            "on-secondary-container": "#00714d",
+            "on-primary-container": "#80bea6",
+            "primary-container": "#064e3b",
+            "surface-container-high": "#e2e7ff",
+            "on-surface-variant": "#404944",
+            "tertiary-fixed": "#9cf2e8",
+            "tertiary-container": "#004d47",
+            "on-tertiary-container": "#6ac0b6",
+            "inverse-primary": "#95d3ba",
+            "secondary-fixed": "#6ffbbe",
+            "surface-dim": "#d2d9f4",
+            "primary-fixed": "#b0f0d6",
+            "on-surface": "#131b2e",
+            "secondary-fixed-dim": "#4edea3",
+            "error-container": "#ffdad6",
+            "tertiary": "#003430",
+            "on-secondary-fixed-variant": "#005236",
+            "on-tertiary-fixed-variant": "#00504a",
+            "inverse-surface": "#283044",
+            "secondary": "#006c49",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "primary-fixed-dim": "#95d3ba",
+            "inverse-on-surface": "#eef0ff",
+            "secondary-container": "#6cf8bb",
+            "surface-container-low": "#f2f3ff",
+            "on-error": "#ffffff",
+            "surface": "#faf8ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "space-md": "1rem",
+            "gutter-mobile": "1rem",
+            "margin": "2rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "title-md": ["Inter"],
+            "mono-metric": ["Inter"],
+            "headline-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "display-mobile": ["Inter"],
+            "label-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "display": ["Inter"],
+            "headline-lg-mobile": ["Inter"]
+          },
+          "fontSize": {
+            "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "mono-metric": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "display-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-surface text-on-surface antialiased font-body-md flex h-full overflow-hidden">
+<!-- ==================== SIDE NAVIGATION BAR ==================== -->
+<aside class="flex flex-col justify-between h-screen w-64 p-4 fixed left-0 top-0 z-40 bg-surface-container-lowest border-r border-outline-variant shadow-sm shrink-0">
+<!-- Brand & Workspace Header -->
+<div>
+<div class="flex items-center gap-3 px-2 py-3 border-b border-outline-variant/60">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h1 class="text-title-md font-title-md text-primary truncate leading-tight">EcoTrack Operations</h1>
+</div>
+<span class="inline-block text-label-sm font-label-sm text-secondary tracking-wide uppercase font-semibold">Admin Control Center</span>
+</div>
+</div>
+<!-- Live Environment Operational Badge -->
+<div class="mt-3 px-3 py-1.5 bg-surface-container-low rounded-lg flex items-center justify-between border border-outline-variant/40">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Ops Node: BLR-01</span>
+</div>
+<span class="text-label-sm font-label-sm text-primary font-semibold">Online</span>
+</div>
+<!-- Navigation Tabs (from Shared JSON Specification) -->
+<nav class="mt-5 space-y-1">
+<!-- Admin Overview (Active State) -->
+<a class="flex items-center gap-3 px-3 py-2 text-primary font-title-md bg-secondary-container/20 rounded-lg transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-primary" data-icon="analytics">analytics</span>
+<span class="text-body-md font-title-md">Admin Overview</span>
+</a>
+<!-- Pickup Queue -->
+<a class="flex items-center justify-between px-3 py-2 text-on-surface-variant font-body-md rounded-lg hover:bg-surface-container-low hover:text-primary transition-all duration-150 ease-in-out" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="pending_actions">pending_actions</span>
+<span>Pickup Queue</span>
+</div>
+<span class="px-1.5 py-0.5 rounded text-label-sm font-label-sm bg-error-container text-on-error-container font-semibold">42</span>
+</a>
+<!-- User Directory -->
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md rounded-lg hover:bg-surface-container-low hover:text-primary transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>User Directory</span>
+</a>
+<!-- Recycling Partners / Hubs -->
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md rounded-lg hover:bg-surface-container-low hover:text-primary transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="recycling">recycling</span>
+<span>Recycling Partners</span>
+</a>
+<!-- Impact Analytics / Fleet -->
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md rounded-lg hover:bg-surface-container-low hover:text-primary transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span>Impact Analytics</span>
+</a>
+<!-- System Settings -->
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md rounded-lg hover:bg-surface-container-low hover:text-primary transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>System Settings</span>
+</a>
+</nav>
+</div>
+<!-- Navigation Footer (from Shared JSON Specification) -->
+<div class="border-t border-outline-variant pt-3 space-y-1">
+<div class="px-3 py-2 flex items-center gap-3 rounded-lg bg-surface-container-low">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-label-md">
+          OP
+        </div>
+<div class="overflow-hidden">
+<p class="text-body-sm font-title-md text-on-surface truncate">Admin Operations</p>
+<p class="text-label-sm font-label-sm text-outline truncate">ops-lead@ecotrack.io</p>
+</div>
+</div>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-body-md rounded-lg hover:bg-surface-container-low hover:text-primary transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span>Admin Profile</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-error font-body-md rounded-lg hover:bg-error-container/20 transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+<div class="pl-64 flex flex-col flex-1 h-screen overflow-hidden">
+<!-- Top System Context Header -->
+<header class="bg-surface-container-lowest border-b border-outline-variant px-8 py-3.5 flex items-center justify-between shrink-0 shadow-sm z-30">
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="terminal">terminal</span>
+<span class="text-body-md font-title-md text-primary">EcoTrack Operations Pilot</span>
+</div>
+<span class="text-outline-variant">|</span>
+<span class="px-2.5 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-medium border border-outline-variant/50">
+          Demonstration &amp; Testing Console
+        </span>
+</div>
+<div class="flex items-center gap-4">
+<!-- Live Clock & Status Indicator -->
+<div class="flex items-center gap-2 text-body-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="font-mono text-label-sm font-label-sm font-semibold">FLEET SYNC: LIVE (0.24s)</span>
+</div>
+<div class="h-4 w-px bg-outline-variant"></div>
+<!-- Quick Help / Documentation Link -->
+<a class="flex items-center gap-1.5 text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-base" data-icon="help">help</span>
+<span>SOP Protocols</span>
+</a>
+<!-- Incident Alert Icon Pill -->
+<div class="flex items-center gap-1 px-2 py-1 rounded bg-surface-container border border-outline-variant text-on-surface">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="notifications">notifications</span>
+<span class="text-label-sm font-label-sm font-semibold">3 Active Dispatches</span>
+</div>
+</div>
+</header>
+<!-- Scrollable Content Canvas -->
+<main class="flex-1 overflow-y-auto p-8 space-y-6">
+<!-- ==================== TOP OPERATIONS KPI BAR ==================== -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+<!-- KPI 1: Registered Users -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Total System Users</span>
+<span class="inline-flex items-center gap-0.5 text-label-sm font-label-sm font-semibold text-secondary bg-surface-container px-2 py-0.5 rounded border border-outline-variant/60">
+<span class="material-symbols-outlined text-xs" data-icon="arrow_upward">arrow_upward</span>
+              +12.4%
+            </span>
+</div>
+<div class="mt-3">
+<div class="text-mono-metric font-mono-metric text-on-surface">8,420</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">8,104 residential, 316 commercial</p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/40 flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Enterprise Portals</span>
+<span class="font-semibold text-primary">100% compliant</span>
+</div>
+</div>
+<!-- KPI 2: Active Pickup Queue -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1.5 h-full bg-error"></div>
+<div class="flex items-center justify-between">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Active Pickup Queue</span>
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm font-semibold text-error bg-error-container px-2 py-0.5 rounded border border-error/20">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+              42 Pending Triage
+            </span>
+</div>
+<div class="mt-3">
+<div class="text-mono-metric font-mono-metric text-on-surface">42 <span class="text-headline-sm font-headline-sm text-on-surface-variant font-normal">reqs</span></div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Avg triage latency: 14 mins</p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/40 flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>High Priority / Commercial</span>
+<span class="font-semibold text-error">9 urgent</span>
+</div>
+</div>
+<!-- KPI 3: Fleet Trucks on Route -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Fleet Trucks on Route</span>
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm font-semibold text-primary bg-secondary-container/20 px-2 py-0.5 rounded border border-secondary-container">
+              77.8% Deployed
+            </span>
+</div>
+<div class="mt-3">
+<div class="text-mono-metric font-mono-metric text-on-surface">14 <span class="text-headline-sm font-headline-sm text-on-surface-variant font-normal">/ 18 active</span></div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">4 units idle / depot standby</p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/40 flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Telematics Health</span>
+<span class="font-semibold text-secondary">Optimal (18/18 ping)</span>
+</div>
+</div>
+<!-- KPI 4: Waste Diverted Today -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Total Waste Diverted Today</span>
+<span class="inline-flex items-center gap-0.5 text-label-sm font-label-sm font-semibold text-secondary bg-surface-container px-2 py-0.5 rounded border border-outline-variant/60">
+<span class="material-symbols-outlined text-xs" data-icon="eco">eco</span>
+              Goal: 4,000 kg
+            </span>
+</div>
+<div class="mt-3">
+<div class="text-mono-metric font-mono-metric text-primary">3,840 <span class="text-headline-sm font-headline-sm text-on-surface-variant font-normal">kg</span></div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Verified scale weight tally</p>
+</div>
+<!-- Progress towards daily goal -->
+<div class="mt-4 pt-3 border-t border-outline-variant/40">
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-1.5 rounded-full" style="width: 96%"></div>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-on-surface-variant mt-1.5">
+<span>96% target achieved</span>
+<span class="font-semibold text-primary">160 kg to goal</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== CONTROL TOOLBAR & FILTER MATRIX ==================== -->
+<section class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant shadow-sm space-y-4">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+<!-- Real-Time Search Bar -->
+<div class="relative flex-1 max-w-lg">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-outline">
+<span class="material-symbols-outlined text-lg" data-icon="search">search</span>
+</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 placeholder:text-outline-variant" placeholder="Search by Pickup ID (#ET-...), Generator Name, Hub, or Driver..." type="text" value="#ET-89"/>
+</div>
+<!-- Action Cluster -->
+<div class="flex items-center gap-3">
+<!-- Filter Dropdown Trigger -->
+<button class="flex items-center gap-2 px-3 py-2 bg-surface-container-lowest text-on-surface border border-outline rounded-lg hover:bg-surface-container transition-colors text-body-md font-title-md">
+<span class="material-symbols-outlined text-base text-outline" data-icon="tune">tune</span>
+<span>Advanced Filter</span>
+</button>
+<!-- Export CSV Logistics Manifest Button -->
+<button class="flex items-center gap-2 px-4 py-2 bg-primary-container text-on-primary rounded-lg hover:bg-primary transition-all duration-150 shadow-sm text-body-md font-title-md">
+<span class="material-symbols-outlined text-base" data-icon="download">download</span>
+<span>Export CSV Logistics Manifest</span>
+</button>
+</div>
+</div>
+<!-- Filter Pills Bar -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 pt-1 border-t border-outline-variant/40">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider mr-2 shrink-0">Status:</span>
+<button class="px-3 py-1 rounded-full text-label-md font-label-md bg-primary text-on-primary font-semibold shrink-0">
+            All (42)
+          </button>
+<button class="px-3 py-1 rounded-full text-label-md font-label-md bg-surface-container text-on-surface border border-outline-variant hover:border-outline transition-colors shrink-0 flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+            Pending Approval (11)
+          </button>
+<button class="px-3 py-1 rounded-full text-label-md font-label-md bg-surface-container text-on-surface border border-outline-variant hover:border-outline transition-colors shrink-0 flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-blue-500"></span>
+            Driver Assigned (8)
+          </button>
+<button class="px-3 py-1 rounded-full text-label-md font-label-md bg-surface-container text-on-surface border border-outline-variant hover:border-outline transition-colors shrink-0 flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-cyan-600"></span>
+            In Transit (6)
+          </button>
+<button class="px-3 py-1 rounded-full text-label-md font-label-md bg-surface-container text-on-surface border border-outline-variant hover:border-outline transition-colors shrink-0 flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+            Collected &amp; Weighed (14)
+          </button>
+<button class="px-3 py-1 rounded-full text-label-md font-label-md bg-surface-container text-on-surface border border-outline-variant hover:border-outline transition-colors shrink-0 flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-purple-500"></span>
+            Audited (2)
+          </button>
+<button class="px-3 py-1 rounded-full text-label-md font-label-md bg-surface-container text-on-surface border border-outline-variant hover:border-outline transition-colors shrink-0 flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+            Rejected (1)
+          </button>
+</div>
+</section>
+<!-- ==================== LIVE PICKUP MANAGEMENT DATA TABLE ==================== -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant flex items-center justify-between bg-surface-container-low/50">
+<div>
+<h2 class="text-title-md font-title-md text-primary">Live Dispatch &amp; Intake Stream</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Real-time telemetry showing generator queues and collector assignments</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm text-outline">Viewing 5 of 42 Records</span>
+<button class="p-1 rounded text-outline hover:text-primary hover:bg-surface-container">
+<span class="material-symbols-outlined text-sm" data-icon="refresh">refresh</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant border-b border-outline-variant text-label-sm font-label-sm uppercase tracking-wider">
+<th class="py-3 px-4">Request ID</th>
+<th class="py-3 px-4">Generator &amp; Entity</th>
+<th class="py-3 px-4">Waste Stream &amp; Wt</th>
+<th class="py-3 px-4">Scheduled Slot &amp; Address</th>
+<th class="py-3 px-4">Assigned Fleet / Driver</th>
+<th class="py-3 px-4">Status</th>
+<th class="py-3 px-4 text-right">Operational Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/40 text-body-md font-body-md">
+<!-- Row 1: St. Joseph's Engineering Campus -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 font-mono font-semibold text-primary">#ET-8941</td>
+<td class="py-3.5 px-4">
+<div class="font-title-md text-on-surface text-body-md">St. Joseph's Engineering Campus</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Institutional • Facilities Office</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="inline-block w-2.5 h-2.5 rounded-sm bg-blue-600"></span>
+<span class="font-semibold text-on-surface">Dry Paper</span>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant font-mono font-medium">Est. 80 kg</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="text-on-surface font-medium">Today • 14:30 - 15:30</div>
+<div class="text-label-sm font-label-sm text-outline truncate max-w-[200px]">Block C Loading Bay, Vittal Mallya Rd</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-base" data-icon="local_shipping">local_shipping</span>
+<div>
+<div class="font-medium text-on-surface">Van #04 - Driver Rajesh</div>
+<div class="text-label-sm font-label-sm text-secondary">En route (ETA 12m)</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm font-semibold bg-blue-50 text-blue-800 border border-blue-200">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
+                    Driver En Route
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 text-label-sm font-label-sm bg-primary-container text-on-primary rounded hover:bg-primary font-semibold">
+                      Mark Collected
+                    </button>
+<button class="p-1 text-outline hover:text-primary rounded hover:bg-surface-container" title="More options">
+<span class="material-symbols-outlined text-base" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Infosys SEZ Cafeteria -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 font-mono font-semibold text-primary">#ET-8940</td>
+<td class="py-3.5 px-4">
+<div class="font-title-md text-on-surface text-body-md">Infosys SEZ Cafeteria</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Commercial • Tower 3 Hub</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="inline-block w-2.5 h-2.5 rounded-sm bg-emerald-600"></span>
+<span class="font-semibold text-on-surface">Plastic &amp; PET</span>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant font-mono font-medium">Est. 45 kg</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="text-on-surface font-medium">Today • 15:00 - 16:00</div>
+<div class="text-label-sm font-label-sm text-outline truncate max-w-[200px]">Gate 2 Loading Ramp, Electronic City</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant">
+<span class="material-symbols-outlined text-xs" data-icon="pending">pending</span>
+                    Unassigned
+                  </span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm font-semibold bg-amber-50 text-amber-900 border border-amber-200">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                    Pending Approval
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 text-label-sm font-label-sm bg-primary text-on-primary rounded hover:bg-primary-container font-semibold">
+                      Quick Approve
+                    </button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm bg-surface-container text-on-surface border border-outline-variant rounded hover:bg-surface-container-high font-medium">
+                      Assign Truck
+                    </button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Priya Nair (Apt 301) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 font-mono font-semibold text-primary">#ET-8939</td>
+<td class="py-3.5 px-4">
+<div class="font-title-md text-on-surface text-body-md">Priya Nair (Apt 301)</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Residential • Sobha Silicon Oasis</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="inline-block w-2.5 h-2.5 rounded-sm bg-purple-600"></span>
+<span class="font-semibold text-on-surface">E-Waste</span>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant font-mono font-medium">Est. 12 kg (Old Laptops, UPS)</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="text-on-surface font-medium">Today • 11:30 (Completed)</div>
+<div class="text-label-sm font-label-sm text-outline truncate max-w-[200px]">Tower B, Hosa Road, Electronic City</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-base" data-icon="local_shipping">local_shipping</span>
+<div>
+<div class="font-medium text-on-surface">E-Van #02 - Driver Amit</div>
+<div class="text-label-sm font-label-sm text-outline">Scale receipt #WT-4412</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm font-semibold bg-emerald-50 text-emerald-900 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    Collected &amp; Weighed
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<span class="text-label-sm font-label-sm font-mono text-outline font-medium px-2 py-1">Audited (13.2 kg Net)</span>
+</td>
+</tr>
+<!-- Row 4: BioClean Tech Labs -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 font-mono font-semibold text-primary">#ET-8938</td>
+<td class="py-3.5 px-4">
+<div class="font-title-md text-on-surface text-body-md">BioClean Tech Labs</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Enterprise • Whitefield Bio-Park</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="inline-block w-2.5 h-2.5 rounded-sm bg-error"></span>
+<span class="font-semibold text-error">Contaminated Mixed</span>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant font-mono font-medium">Audit Fail: 62 kg</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="text-on-surface font-medium">Today • 10:00 (Incident)</div>
+<div class="text-label-sm font-label-sm text-outline truncate max-w-[200px]">Dock 4, Industrial Plot 19</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-base" data-icon="local_shipping">local_shipping</span>
+<div>
+<div class="font-medium text-on-surface">Truck #08 - Driver Vikram</div>
+<div class="text-label-sm font-label-sm text-error">HazMat Flags Present</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm font-semibold bg-red-50 text-red-900 border border-red-200">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                    Rejected (Contaminated)
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 text-label-sm font-label-sm bg-error-container text-on-error-container rounded hover:bg-error-container/80 font-semibold border border-error/30">
+                    View Violation Log
+                  </button>
+</td>
+</tr>
+<!-- Row 5: Brigade Gateway Residents Assoc -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 font-mono font-semibold text-primary">#ET-8937</td>
+<td class="py-3.5 px-4">
+<div class="font-title-md text-on-surface text-body-md">Brigade Gateway Residents Assoc</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Residential Multi-Unit • Hub Bin #12</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="inline-block w-2.5 h-2.5 rounded-sm bg-emerald-600"></span>
+<span class="font-semibold text-on-surface">Cardboard &amp; Plastic</span>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant font-mono font-medium">Est. 120 kg</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="text-on-surface font-medium">Today • 16:30 - 17:30</div>
+<div class="text-label-sm font-label-sm text-outline truncate max-w-[200px]">Basement B2 Waste Bay, Malleshwaram</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-base" data-icon="local_shipping">local_shipping</span>
+<div>
+<div class="font-medium text-on-surface">Compactor #01 - Driver Suresh</div>
+<div class="text-label-sm font-label-sm text-secondary">Route Scheduled</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-label-sm font-label-sm font-semibold bg-blue-50 text-blue-800 border border-blue-200">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                    Driver Assigned
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 text-label-sm font-label-sm bg-surface-container text-on-surface border border-outline-variant rounded hover:bg-surface-container-high font-medium">
+                      Reassign
+                    </button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm bg-error-container text-on-error-container rounded hover:bg-error-container/80 font-medium">
+                      Reject
+                    </button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination Footer -->
+<div class="px-6 py-3 border-t border-outline-variant bg-surface-container-low/30 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<div>Showing records 1 to 5 of 42 active requests</div>
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1 rounded border border-outline-variant bg-surface-container-lowest text-on-surface disabled:opacity-50" disabled="">Previous</button>
+<span class="px-2 text-label-sm font-label-sm font-bold text-primary">Page 1 of 9</span>
+<button class="px-2.5 py-1 rounded border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container">Next</button>
+</div>
+</div>
+</section>
+<!-- ==================== SECONDARY ANALYTICS & LOGISTICS GRID ==================== -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Stream Breakdown Analytics (7 cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<div>
+<h3 class="text-title-md font-title-md text-primary">Waste Inflow by Stream</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Mass diversion tally (kg) recorded across metropolitan hubs today</p>
+</div>
+<span class="text-label-sm font-label-sm font-mono text-outline px-2.5 py-1 rounded bg-surface-container border border-outline-variant">
+                TOTAL: 3,840 KG
+              </span>
+</div>
+<!-- Stylized CSS-based precision bar distribution -->
+<div class="mt-6 space-y-4">
+<!-- Stream 1: Organic & Compostable -->
+<div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mb-1">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-secondary"></span>
+<span class="font-medium text-on-surface">Organic Compostable</span>
+</div>
+<div class="font-mono font-semibold text-on-surface">1,680 kg <span class="text-outline font-normal text-label-sm">(43.7%)</span></div>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2.5 overflow-hidden">
+<div class="bg-secondary h-2.5 rounded-full" style="width: 43.7%"></div>
+</div>
+</div>
+<!-- Stream 2: Dry Paper & Cardboard -->
+<div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mb-1">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-blue-600"></span>
+<span class="font-medium text-on-surface">Dry Paper &amp; Cardboard</span>
+</div>
+<div class="font-mono font-semibold text-on-surface">1,120 kg <span class="text-outline font-normal text-label-sm">(29.2%)</span></div>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2.5 overflow-hidden">
+<div class="bg-blue-600 h-2.5 rounded-full" style="width: 29.2%"></div>
+</div>
+</div>
+<!-- Stream 3: Plastic & Polymers -->
+<div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mb-1">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-amber-500"></span>
+<span class="font-medium text-on-surface">High-Density Plastic &amp; PET</span>
+</div>
+<div class="font-mono font-semibold text-on-surface">740 kg <span class="text-outline font-normal text-label-sm">(19.3%)</span></div>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2.5 overflow-hidden">
+<div class="bg-amber-500 h-2.5 rounded-full" style="width: 19.3%"></div>
+</div>
+</div>
+<!-- Stream 4: Regulated E-Waste -->
+<div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mb-1">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-purple-600"></span>
+<span class="font-medium text-on-surface">Regulated Electronics (E-Waste)</span>
+</div>
+<div class="font-mono font-semibold text-on-surface">300 kg <span class="text-outline font-normal text-label-sm">(7.8%)</span></div>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2.5 overflow-hidden">
+<div class="bg-purple-600 h-2.5 rounded-full" style="width: 7.8%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Contamination rate: <strong class="text-primary font-semibold">1.4%</strong> (Target &lt; 3.0%)</span>
+<a class="text-secondary font-title-md hover:underline flex items-center gap-1" href="#">
+<span>Detailed Stream Audit</span>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Regional Depot Capacity Gauges & Heatmap Status (5 cols) -->
+<div class="lg:col-span-5 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<div>
+<h3 class="text-title-md font-title-md text-primary">Depot Capacity &amp; Hub Health</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Real-time fill indicators for regional compaction hubs</p>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="warehouse">warehouse</span>
+</div>
+<!-- Segmented Gauge Domain Component -->
+<div class="mt-5 space-y-5">
+<!-- Depot 1: Whitefield Hub (84% Capacity - Warning) -->
+<div class="p-3.5 rounded-lg border border-outline-variant/60 bg-surface-container-low/40">
+<div class="flex justify-between items-center mb-1.5">
+<div>
+<span class="font-title-md text-on-surface text-body-md font-semibold">Whitefield Recycling Depot</span>
+<p class="text-label-sm font-label-sm text-outline">Zone 4 • Semi-Static Compactor #2</p>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-amber-50 text-amber-900 border border-amber-300 font-bold">
+                    84% FULL
+                  </span>
+</div>
+<!-- Horizontal segmented fill bar (70-84% Approaching Service) -->
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden mt-2">
+<div class="bg-amber-500 h-2 rounded-full" style="width: 84%"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant mt-2">
+<span>Capacity: 8.4T / 10T</span>
+<span class="text-amber-700 font-semibold">Dispatched transfer truck</span>
+</div>
+</div>
+<!-- Depot 2: Koramangala Hub (52% Capacity - Normal) -->
+<div class="p-3.5 rounded-lg border border-outline-variant/60 bg-surface-container-low/40">
+<div class="flex justify-between items-center mb-1.5">
+<div>
+<span class="font-title-md text-on-surface text-body-md font-semibold">Koramangala Transfer Hub</span>
+<p class="text-label-sm font-label-sm text-outline">Zone 1 • Sorting Facility &amp; Baler</p>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-emerald-50 text-emerald-900 border border-emerald-300 font-bold">
+                    52% NORMAL
+                  </span>
+</div>
+<!-- Horizontal segmented fill bar (0-69% Normal) -->
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden mt-2">
+<div class="bg-emerald-600 h-2 rounded-full" style="width: 52%"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant mt-2">
+<span>Capacity: 3.1T / 6.0T</span>
+<span class="text-secondary font-semibold">Normal Intake Velocity</span>
+</div>
+</div>
+<!-- Depot 3: Peenya Industrial Depot (24% Capacity - Empty) -->
+<div class="p-3.5 rounded-lg border border-outline-variant/60 bg-surface-container-low/40">
+<div class="flex justify-between items-center mb-1.5">
+<div>
+<span class="font-title-md text-on-surface text-body-md font-semibold">Peenya Industrial Hub</span>
+<p class="text-label-sm font-label-sm text-outline">Zone 7 • High Tonnage Shredder</p>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant font-bold">
+                    24% NORMAL
+                  </span>
+</div>
+<!-- Horizontal segmented fill bar -->
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden mt-2">
+<div class="bg-emerald-600 h-2 rounded-full" style="width: 24%"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant mt-2">
+<span>Capacity: 4.8T / 20.0T</span>
+<span class="text-on-surface-variant">Awaiting scheduled haul</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Automated alert threshold set to 80%</span>
+<button class="text-primary font-semibold hover:underline">Rebalance Fleet</button>
+</div>
+</div>
+</section>
+</main>
+<!-- ==================== DOCKED SYSTEM FOOTER ==================== -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant px-8 py-3.5 shrink-0">
+<div class="flex flex-col md:flex-row justify-between items-center w-full max-w-7xl mx-auto gap-3 text-body-sm font-body-sm">
+<div class="text-on-surface-variant">
+          © 2025 EcoTrack Technologies Inc. All rights reserved. Precision Cleantech Logistics.
+        </div>
+<div class="flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">Compliance &amp; Audits</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">API Documentation</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">Contact Operations</a>
+</div>
+</div>
+</footer>
+</div>
+<!-- Interactive Demo Micro-actions (Vanilla Script) -->
+<script>
+    // Lightweight row click interaction and alert trigger for testing console
+    document.querySelectorAll('tbody tr').forEach(row => {
+      row.addEventListener('click', (e) => {
+        // Prevent toggle if clicking a button
+        if (e.target.closest('button')) return;
+        row.classList.toggle('bg-secondary-container/10');
+      });
+    });
+  </script>
+</body></html>

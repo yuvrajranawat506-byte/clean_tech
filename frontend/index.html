@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="description" content="EcoTrack — Smart Cleantech Waste Logistics & Reverse Supply Chain. Schedule pickups, track auditable recycling diversion, and earn EcoCredits." />
+    
+    <!-- PWA Mobile App Support -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/png" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#003527" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="EcoTrack" />
+    
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <!-- Inter Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS with Forms and Container Queries from Stitch Design -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#dae2fd",
+              "surface-container-lowest": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#dae2fd",
+              "surface-tint": "#2b6954",
+              "surface-bright": "#faf8ff",
+              "surface-container": "#eaedff",
+              "on-secondary-fixed": "#002113",
+              "on-primary-fixed": "#002117",
+              "on-background": "#131b2e",
+              "background": "#faf8ff",
+              "error": "#ba1a1a",
+              "on-primary-fixed-variant": "#0b513d",
+              "primary": "#003527",
+              "tertiary-fixed-dim": "#80d5cb",
+              "outline-variant": "#bfc9c3",
+              "outline": "#707974",
+              "on-tertiary-fixed": "#00201d",
+              "on-secondary-container": "#00714d",
+              "on-primary-container": "#80bea6",
+              "primary-container": "#064e3b",
+              "surface-container-high": "#e2e7ff",
+              "on-surface-variant": "#404944",
+              "tertiary-fixed": "#9cf2e8",
+              "tertiary-container": "#004d47",
+              "on-tertiary-container": "#6ac0b6",
+              "inverse-primary": "#95d3ba",
+              "secondary-fixed": "#6ffbbe",
+              "surface-dim": "#d2d9f4",
+              "primary-fixed": "#b0f0d6",
+              "on-surface": "#131b2e",
+              "secondary-fixed-dim": "#4edea3",
+              "error-container": "#ffdad6",
+              "tertiary": "#003430",
+              "on-secondary-fixed-variant": "#005236",
+              "on-tertiary-fixed-variant": "#00504a",
+              "inverse-surface": "#283044",
+              "secondary": "#006c49",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "primary-fixed-dim": "#95d3ba",
+              "inverse-on-surface": "#eef0ff",
+              "secondary-container": "#6cf8bb",
+              "surface-container-low": "#f2f3ff",
+              "on-error": "#ffffff",
+              "surface": "#faf8ff"
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              title: ["Inter", "sans-serif"],
+              mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"]
+            },
+            fontSize: {
+              "title-md": ["16px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }],
+              "mono-metric": ["28px", { lineHeight: "34px", letterSpacing: "-0.02em", fontWeight: "700" }],
+              "headline-sm": ["20px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }],
+              "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }],
+              "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "400" }],
+              "body-sm": ["12px", { lineHeight: "16px", letterSpacing: "0em", fontWeight: "400" }],
+              "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.025em", fontWeight: "600" }],
+              "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "600" }],
+              "display-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.025em", fontWeight: "700" }],
+              "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.03em", fontWeight: "600" }],
+              "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }],
+              "display": ["48px", { lineHeight: "56px", letterSpacing: "-0.03em", fontWeight: "700" }],
+              "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "600" }]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+      }
+      .elevation-1 {
+        box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+        border: 1px solid #E2E8F0;
+      }
+      .elevation-2 {
+        box-shadow: 0 4px 6px -1px rgba(6, 78, 59, 0.04), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
+        border: 1px solid #E2E8F0;
+      }
+      @keyframes pulse-subtle {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.15); }
+      }
+      .status-pulse {
+        animation: pulse-subtle 2s infinite ease-in-out;
+      }
+    </style>
+    <title>EcoTrack — Smart Cleantech Waste Platform</title>
+  </head>
+  <body class="h-full bg-background text-on-surface antialiased font-sans">
+    <div id="root" class="min-h-full flex flex-col"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((reg) => console.log('EcoTrack PWA Service Worker Registered', reg))
+            .catch((err) => console.log('Service Worker registration failed', err));
+        });
+      }
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
